@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "A marketplace to sell and buy used products",
+    "githubUrl": "https://github.com/tazwar9t62/done-with-it"
   }
 }
