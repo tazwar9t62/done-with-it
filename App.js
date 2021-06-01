@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
 import {
   StyleSheet,
@@ -8,6 +7,9 @@ import {
   TouchableOpacity,
   SafeAreaView,
   Image,
+  Platform,
+  StatusBar,
+  Alert,
 } from "react-native";
 
 export default function App() {
@@ -17,9 +19,26 @@ export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <Button
-        onPress={() => console.log("button clicked")}
+        onPress={
+          () => {
+            // Alert.prompt("yoo", "yooo bhai kichu likhen", (text) =>
+            //   console.log(text)
+            // );
+            Alert.alert("Die", "Do you wanna die right now?", [
+              {
+                text: "Yesss!",
+                onPress: () => console.log("clicked affirmative, call azrail"),
+              },
+              {
+                text: "Noo!",
+                onPress: () =>
+                  console.log("clicked negative, dont call azrail"),
+              },
+            ]);
+          }
+          // () => console.log("button clicked")
+        }
         title="Click me"
-        color="red"
       ></Button>
       <TouchableOpacity onPress={() => console.log("image clicked")}>
         <Image
@@ -31,7 +50,7 @@ export default function App() {
           }}
         />
       </TouchableOpacity>
-      <Text onPress={handlePass()}>
+      <Text style={styles.btnStyle} onPress={handlePass()}>
         Hey Tazwar you app working! yaay la la la la
       </Text>
       {/* <Image source={require("./assets/favicon.png")} /> */}
@@ -43,7 +62,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "yellow",
-    alignItems: "center",
-    justifyContent: "center",
+    // alignItems: "center",
+    // justifyContent: "center",
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+  },
+  btnStyle: {
+    color: "red",
+    backgroundColor: "green",
   },
 });
